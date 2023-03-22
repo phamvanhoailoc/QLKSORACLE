@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WebQLKSORACLE.Models.RoLe>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Trang chính</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Quản lý quyền truy cập</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+<div class="col-xs-12">
+    <div class="box-content">
+        <h4 class="box-title">Danh sách quyền truy cập</h4>
+        <div class="dropdown js__drop_down">
+            <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminRoles" asp-action="Create">Add quyền truy cập</a>
+            <!-- /.sub-menu -->
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên quyền truy cập</th>
+                    <th>Trạng thái hoạt động</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <th scope="row">@item.RoleId</th>
+                            <td>@item.TenR</td>
+                            <td>
+                                @if (item.TrangthaiR == true)
+                                {
+                                    <span class="notice notice-blue">Active</span>
+                                }
+                                else
+                                {
+                                    <span class="notice notice-danger">Block</span>
+                                }
+                            </td>
+                            <td>
+                               
+                                <a class="btn btn-primary btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminRoles" asp-action="Edit" asp-route-id="@item.RoleId">Edit</a>
+                                <a class="btn btn-success btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminRoles" asp-action="Delete" asp-route-id="@item.RoleId">Delete</a>
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-content -->
+</div>
