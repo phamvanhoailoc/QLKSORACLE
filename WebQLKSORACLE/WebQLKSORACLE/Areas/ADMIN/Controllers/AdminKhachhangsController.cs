@@ -23,13 +23,29 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
         }
 
         // GET: ADMIN/AdminKhachhangs
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, String name, String sdt, String email)
         {
             var pageNumber = page == null || page <= 0 ? 1 : page.Value;
             var pageSize = 10;
             var IsCustomers = _context.Khachhangs
-                .AsNoTracking();
-
+                    .AsNoTracking();
+            if (!string.IsNullOrEmpty(name))
+            {
+                IsCustomers = IsCustomers
+                                .Where(x => x.TenKh.ToUpper().Contains(name.ToUpper()))
+                                .OrderByDescending(x => x.TenKh);
+            }
+            else if (!string.IsNullOrEmpty(sdt))
+            {
+                IsCustomers = IsCustomers.Where(x => x.SdtKh.ToString().Contains(sdt));
+                               
+            } else if (!string.IsNullOrEmpty(email)) {
+                IsCustomers = IsCustomers
+                               .Where(x => x.EmailKh.ToUpper().Contains(email.ToUpper()))
+                               .OrderByDescending(x => x.EmailKh);
+            }
+                              
+            
             PagedList<Khachhang> models = new PagedList<Khachhang>(IsCustomers, pageNumber, pageSize);
             ViewBag.CurrentPage = pageNumber;
             return View(models);

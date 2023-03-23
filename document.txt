@@ -1,0 +1,1 @@
+connect DB: Scaffold-DbContext "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orcl)));User ID=anonymous;Password=sa;Persist Security Info=True" Oracle.EntityFrameworkCore -OutputDir Models -force

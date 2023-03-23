@@ -36,11 +36,21 @@
                 <span asp-validation-for="TenKh" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="SdtKh" class="control-label">Số điện thoại khách hàng</label>
+                <input asp-for="SdtKh" class="form-control" readonly/>
+                <span asp-validation-for="SdtKh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailKh" class="control-label">Email khách hàng</label>
+                <input asp-for="EmailKh" class="form-control" readonly/>
+                <span asp-validation-for="EmailKh" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="DiachiKh" class="control-label">Địa chỉ khách hàng</label>
                 <input asp-for="DiachiKh" class="form-control" />
                 <span asp-validation-for="DiachiKh" class="text-danger"></span>
             </div>
-            
+
             <div class="form-group">
                 <div class="switch primary">
                     <input type="checkbox" asp-for="TrangthaiKh">

@@ -461,4 +461,3 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminKhachhangs\Details.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminKhachhangs\Edit.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminKhachhangs\Index.cshtml.g.cs
-E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\Search\ListKhachhangSearchPartialView.cshtml.g.cs
