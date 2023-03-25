@@ -1,0 +1,90 @@
+﻿@model WebQLKSORACLE.Models.Nhanvien
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách nhân viên</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Thông tin nhân viên</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+
+<div class="dropdown js__drop_down" style="padding-top: 13px; padding-bottom: 13px">
+    <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminNhanviens" asp-action="Edit" asp-route-id="@Model.MaNv">Chỉnh sửa nhân viên</a>
+    <!-- /.sub-menu -->
+</div>
+<table class="table table-hover no-margin">
+    <tbody>
+        <tr>
+            <td>ID: </td>
+            <td>@Model.MaNv</td>
+        </tr>
+        <tr>
+            <td>Tên nhân viên: </td>
+            <td>@Model.TenNv</i></td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>@Model.EmailNv</td>
+        </tr>
+        <tr>
+            <td>Số điện thoại: </td>
+            <td>@Model.SdtNv</td>
+        </tr>
+        <tr>
+            <td>Địa chỉ: </td>
+            <td>@Model.DiachiNv</td>
+        </tr>
+        <tr>
+            <td>Trạng thái: </td>
+            <td>
+                @if (@Model.TrangthaiNv == true)
+                {
+                    <span class="notice notice-blue">Active</span>
+                }
+                else
+                {
+                    <span class="notice notice-danger">Block</span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>Giới tính: </td>
+            <td>
+                @if (@Model.GioitinhNv == true)
+                {
+                    <span class="notice notice-blue">Nam</span>
+                }
+                else
+                {
+                    <span class="notice notice-blue">Nữ</span>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>Role: </td>
+            <td>@Model.Role.TenR</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="form-group"> 
+    <a class="btn btn-default" asp-action="Index">Quay lại danh sách nhân viên</a>
+</div>
