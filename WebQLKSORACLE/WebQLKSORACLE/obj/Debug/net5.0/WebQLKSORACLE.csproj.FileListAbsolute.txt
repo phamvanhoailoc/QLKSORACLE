@@ -466,3 +466,4 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminNhanviens\Details.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminNhanviens\Edit.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminNhanviens\Index.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminNhanviens\EditPassword.cshtml.g.cs

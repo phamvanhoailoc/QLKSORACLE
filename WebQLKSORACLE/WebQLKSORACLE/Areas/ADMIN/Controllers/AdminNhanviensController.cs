@@ -102,7 +102,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    
+
                     string salt = Utilities.GetRandomKey();
                     Nhanvien tk = new Nhanvien
                     {
@@ -113,6 +113,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
                         DiachiNv = taikhoan.DiachiNv,
                         GioitinhNv = taikhoan.GioitinhNv,
                         RoleId = taikhoan.RoleId,
+                        KeyNv = salt,
                         TrangthaiNv = taikhoan.TrangthaiNv
                     };
                     try
@@ -236,5 +237,77 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
         {
             return _context.Nhanviens.Any(e => e.MaNv == id);
         }
+
+        public async Task<IActionResult> EditPassword(decimal? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var nhanvien = await _context.Nhanviens.FindAsync(id);
+            if (nhanvien == null)
+            {
+                return NotFound();
+            }
+            //ViewData["DanhMuc"] = new SelectList(_context.RoLes, "RoleId", "TenR");
+            return View();
+        }
+
+        // POST: ADMIN/AdminNhanviens/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditPassword(decimal id, EditPassword taikhoan)
+        {
+            //if (id != nv.MaNv)
+            //{
+            //    return notfound();
+            //}
+            try
+            {
+                //if (ModelState.IsValid)
+                //{
+                    string salt = Utilities.GetRandomKey(); 
+                    try
+                    {  
+                        var checkPassword = await _context.Nhanviens
+                                            .FindAsync(id);
+                        string pass = (taikhoan.MatkhauCu + checkPassword.KeyNv.Trim()).ToMD5();
+                    if (checkPassword.MatkhauNv != pass)
+                        {
+                            _notyfService.Error("Password hiện tại sai!!");
+                            return View(taikhoan);
+                        }
+                        checkPassword.MatkhauNv = (taikhoan.MatkhauNv + salt.Trim()).ToMD5();
+                        checkPassword.KeyNv = salt;                                      
+                        _context.Update(checkPassword);
+                        await _context.SaveChangesAsync();
+                        _notyfService.Success("Cập nhật thành công");
+                        return RedirectToAction(nameof(Index));
+                    }
+                    catch (DbUpdateConcurrencyException)
+                    {
+                        if (!NhanvienExists(taikhoan.MaNv))
+                        {
+                            return NotFound();
+                        }
+                        else
+                        {
+                            throw;
+                        }
+                    }
+                    return RedirectToAction(nameof(Index));
+
+                //}
+            }
+            catch {
+                return View(taikhoan);
+            }
+
+            return View(taikhoan);
+        }
+
     }
 }

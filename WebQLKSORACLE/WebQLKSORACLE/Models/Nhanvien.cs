@@ -16,6 +16,7 @@ namespace WebQLKSORACLE.Models
         public bool GioitinhNv { get; set; }
         public decimal RoleId { get; set; }
         public bool TrangthaiNv { get; set; }
+        public string KeyNv { get; set; }
 
         public virtual RoLe Role { get; set; }
     }

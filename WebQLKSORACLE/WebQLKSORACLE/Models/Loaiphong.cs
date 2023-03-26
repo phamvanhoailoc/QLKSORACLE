@@ -10,6 +10,6 @@ namespace WebQLKSORACLE.Models
         public decimal MaLp { get; set; }
         public string TenLp { get; set; }
         public string ChitietLp { get; set; }
-        public bool TrangthaiLp { get; set; }
+        public bool? TrangthaiLp { get; set; }
     }
 }

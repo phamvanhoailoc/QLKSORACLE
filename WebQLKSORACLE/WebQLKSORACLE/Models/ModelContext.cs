@@ -131,6 +131,11 @@ namespace WebQLKSORACLE.Models
                     .HasColumnName("GIOITINH")
                     .HasDefaultValueSql("0 ");
 
+                entity.Property(e => e.KeyKh)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("KEY_KH");
+
                 entity.Property(e => e.MatkhauKh)
                     .HasMaxLength(50)
                     .IsUnicode(false)
@@ -219,6 +224,11 @@ namespace WebQLKSORACLE.Models
                     .HasPrecision(1)
                     .HasColumnName("GIOITINH_NV")
                     .HasDefaultValueSql("0 ");
+
+                entity.Property(e => e.KeyNv)
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("KEY_NV");
 
                 entity.Property(e => e.MatkhauNv)
                     .HasMaxLength(50)

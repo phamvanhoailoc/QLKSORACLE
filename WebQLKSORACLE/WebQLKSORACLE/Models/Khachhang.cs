@@ -20,6 +20,7 @@ namespace WebQLKSORACLE.Models
         public bool TrangthaiKh { get; set; }
         public string DiachiKh { get; set; }
         public bool Gioitinh { get; set; }
+        public string KeyKh { get; set; }
 
         public virtual ICollection<PhieuDatPhong> PhieuDatPhongs { get; set; }
     }

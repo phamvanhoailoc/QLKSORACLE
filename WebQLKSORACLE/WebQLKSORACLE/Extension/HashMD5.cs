@@ -18,5 +18,6 @@ namespace DiChoSaiGon.Extension
                 sbHash.Append(String.Format("{0:x2}", b));
             return sbHash.ToString();
         }
+       
     }
 }
