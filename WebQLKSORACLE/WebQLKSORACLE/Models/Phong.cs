@@ -7,19 +7,15 @@ namespace WebQLKSORACLE.Models
 {
     public partial class Phong
     {
-        public Phong()
-        {
-            Giaphongs = new HashSet<Giaphong>();
-            PhieuDatPhongs = new HashSet<PhieuDatPhong>();
-        }
-
         public decimal MaP { get; set; }
         public string TenP { get; set; }
-        public bool? TrangthaiP { get; set; }
-        public decimal MaLp { get; set; }
+        public decimal? MaLp { get; set; }
         public string ChitietP { get; set; }
+        public string Hinh { get; set; }
+        public decimal? MattP { get; set; }
+        public bool Trangthai { get; set; }
 
-        public virtual ICollection<Giaphong> Giaphongs { get; set; }
-        public virtual ICollection<PhieuDatPhong> PhieuDatPhongs { get; set; }
+        public virtual Loaiphong MaLpNavigation { get; set; }
+        public virtual TrangthaiP MattPNavigation { get; set; }
     }
 }

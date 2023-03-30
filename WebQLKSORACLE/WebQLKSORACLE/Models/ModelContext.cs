@@ -17,8 +17,8 @@ namespace WebQLKSORACLE.Models
         {
         }
 
+        public virtual DbSet<CtPdp> CtPdps { get; set; }
         public virtual DbSet<Donvitien> Donvitiens { get; set; }
-        public virtual DbSet<Giaphong> Giaphongs { get; set; }
         public virtual DbSet<Khachhang> Khachhangs { get; set; }
         public virtual DbSet<Khuvuc> Khuvucs { get; set; }
         public virtual DbSet<Loaiphong> Loaiphongs { get; set; }
@@ -27,6 +27,7 @@ namespace WebQLKSORACLE.Models
         public virtual DbSet<Phong> Phongs { get; set; }
         public virtual DbSet<RoLe> RoLes { get; set; }
         public virtual DbSet<TrangthaiDp> TrangthaiDps { get; set; }
+        public virtual DbSet<TrangthaiP> TrangthaiPs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,6 +42,40 @@ namespace WebQLKSORACLE.Models
         {
             modelBuilder.HasDefaultSchema("ANONYMOUS")
                 .HasAnnotation("Relational:Collation", "USING_NLS_COMP");
+
+            modelBuilder.Entity<CtPdp>(entity =>
+            {
+                entity.HasKey(e => e.MaCtpdp)
+                    .HasName("CT_PDP_PK");
+
+                entity.ToTable("CT_PDP");
+
+                entity.Property(e => e.MaCtpdp)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("MA_CTPDP");
+
+                entity.Property(e => e.Gia)
+                    .HasColumnType("FLOAT")
+                    .HasColumnName("GIA");
+
+                entity.Property(e => e.MaDp)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("MA_DP");
+
+                entity.Property(e => e.MaP)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("MA_P");
+
+                entity.Property(e => e.SlNgay)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("SL_NGAY");
+
+                entity.HasOne(d => d.MaDpNavigation)
+                    .WithMany(p => p.CtPdps)
+                    .HasForeignKey(d => d.MaDp)
+                    .HasConstraintName("FK_7");
+            });
 
             modelBuilder.Entity<Donvitien>(entity =>
             {
@@ -57,52 +92,6 @@ namespace WebQLKSORACLE.Models
                 entity.Property(e => e.TenDvt)
                     .HasMaxLength(50)
                     .HasColumnName("TEN_DVT");
-            });
-
-            modelBuilder.Entity<Giaphong>(entity =>
-            {
-                entity.HasKey(e => e.MaGp)
-                    .HasName("GIAPHONG_PK");
-
-                entity.ToTable("GIAPHONG");
-
-                entity.Property(e => e.MaGp)
-                    .HasMaxLength(20)
-                    .IsUnicode(false)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("MA_GP");
-
-                entity.Property(e => e.GiaP)
-                    .HasColumnType("FLOAT")
-                    .HasColumnName("GIA_P");
-
-                entity.Property(e => e.MaDvt)
-                    .HasColumnType("NUMBER")
-                    .HasColumnName("MA_DVT");
-
-                entity.Property(e => e.MaP)
-                    .HasColumnType("NUMBER")
-                    .HasColumnName("MA_P");
-
-                entity.Property(e => e.NgaydenGp)
-                    .HasColumnType("DATE")
-                    .HasColumnName("NGAYDEN_GP");
-
-                entity.Property(e => e.NgaydiGp)
-                    .HasColumnType("DATE")
-                    .HasColumnName("NGAYDI_GP");
-
-                entity.HasOne(d => d.MaDvtNavigation)
-                    .WithMany(p => p.Giaphongs)
-                    .HasForeignKey(d => d.MaDvt)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_2");
-
-                entity.HasOne(d => d.MaPNavigation)
-                    .WithMany(p => p.Giaphongs)
-                    .HasForeignKey(d => d.MaP)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_1");
             });
 
             modelBuilder.Entity<Khachhang>(entity =>
@@ -150,7 +139,6 @@ namespace WebQLKSORACLE.Models
                     .HasColumnName("TEN_KH");
 
                 entity.Property(e => e.TrangthaiKh)
-                    .IsRequired()
                     .HasPrecision(1)
                     .HasColumnName("TRANGTHAI_KH")
                     .HasDefaultValueSql("0 ");
@@ -188,15 +176,31 @@ namespace WebQLKSORACLE.Models
                     .HasMaxLength(200)
                     .HasColumnName("CHITIET_LP");
 
+                entity.Property(e => e.Dongia)
+                    .HasColumnType("FLOAT")
+                    .HasColumnName("DONGIA");
+
+                entity.Property(e => e.MaDvt)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("MA_DVT");
+
+                entity.Property(e => e.SlNguoi)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("SL_NGUOI");
+
                 entity.Property(e => e.TenLp)
                     .HasMaxLength(50)
                     .HasColumnName("TEN_LP");
 
                 entity.Property(e => e.TrangthaiLp)
-                    .IsRequired()
                     .HasPrecision(1)
                     .HasColumnName("TRANGTHAI_LP")
                     .HasDefaultValueSql("0 ");
+
+                entity.HasOne(d => d.MaDvtNavigation)
+                    .WithMany(p => p.Loaiphongs)
+                    .HasForeignKey(d => d.MaDvt)
+                    .HasConstraintName("FK_4");
             });
 
             modelBuilder.Entity<Nhanvien>(entity =>
@@ -248,7 +252,6 @@ namespace WebQLKSORACLE.Models
                     .HasColumnName("TEN_NV");
 
                 entity.Property(e => e.TrangthaiNv)
-                    .IsRequired()
                     .HasPrecision(1)
                     .HasColumnName("TRANGTHAI_NV")
                     .HasDefaultValueSql("0 ");
@@ -256,7 +259,6 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Nhanviens)
                     .HasForeignKey(d => d.RoleId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK1");
             });
 
@@ -276,13 +278,13 @@ namespace WebQLKSORACLE.Models
                     .HasColumnType("NUMBER")
                     .HasColumnName("MA_KH");
 
-                entity.Property(e => e.MaP)
-                    .HasColumnType("NUMBER")
-                    .HasColumnName("MA_P");
-
                 entity.Property(e => e.MaTtdp)
                     .HasColumnType("NUMBER")
                     .HasColumnName("MA_TTDP");
+
+                entity.Property(e => e.NgayLapP)
+                    .HasColumnType("DATE")
+                    .HasColumnName("NGAY_LAP_P");
 
                 entity.Property(e => e.NgaydenDp)
                     .HasColumnType("DATE")
@@ -292,22 +294,22 @@ namespace WebQLKSORACLE.Models
                     .HasColumnType("DATE")
                     .HasColumnName("NGAYDI_DP");
 
+                entity.Property(e => e.SlNgay)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("SL_NGAY");
+
+                entity.Property(e => e.Tongtien)
+                    .HasColumnType("FLOAT")
+                    .HasColumnName("TONGTIEN");
+
                 entity.HasOne(d => d.MaKhNavigation)
                     .WithMany(p => p.PhieuDatPhongs)
                     .HasForeignKey(d => d.MaKh)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_5");
-
-                entity.HasOne(d => d.MaPNavigation)
-                    .WithMany(p => p.PhieuDatPhongs)
-                    .HasForeignKey(d => d.MaP)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_4");
 
                 entity.HasOne(d => d.MaTtdpNavigation)
                     .WithMany(p => p.PhieuDatPhongs)
                     .HasForeignKey(d => d.MaTtdp)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_6");
             });
 
@@ -323,21 +325,38 @@ namespace WebQLKSORACLE.Models
                     .ValueGeneratedOnAdd()
                     .HasColumnName("MA_P");
 
-                entity.Property(e => e.ChitietP).HasColumnName("CHITIET_P");
+                entity.Property(e => e.ChitietP)
+                    .HasColumnType("NCLOB")
+                    .HasColumnName("CHITIET_P");
+
+                entity.Property(e => e.Hinh).HasColumnName("HINH");
 
                 entity.Property(e => e.MaLp)
                     .HasColumnType("NUMBER")
                     .HasColumnName("MA_LP");
 
+                entity.Property(e => e.MattP)
+                    .HasColumnType("NUMBER")
+                    .HasColumnName("MATT_P");
+
                 entity.Property(e => e.TenP)
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .HasColumnName("TEN_P");
 
-                entity.Property(e => e.TrangthaiP)
-                    .IsRequired()
+                entity.Property(e => e.Trangthai)
                     .HasPrecision(1)
-                    .HasColumnName("TRANGTHAI_P")
-                    .HasDefaultValueSql("0 ");
+                    .HasColumnName("TRANGTHAI")
+                    .HasDefaultValueSql("0 \n");
+
+                entity.HasOne(d => d.MaLpNavigation)
+                    .WithMany(p => p.Phongs)
+                    .HasForeignKey(d => d.MaLp)
+                    .HasConstraintName("FK_9");
+
+                entity.HasOne(d => d.MattPNavigation)
+                    .WithMany(p => p.Phongs)
+                    .HasForeignKey(d => d.MattP)
+                    .HasConstraintName("FK_3");
             });
 
             modelBuilder.Entity<RoLe>(entity =>
@@ -380,10 +399,26 @@ namespace WebQLKSORACLE.Models
                     .HasColumnName("TEN_TT");
 
                 entity.Property(e => e.Trangthai)
-                    .IsRequired()
                     .HasPrecision(1)
                     .HasColumnName("TRANGTHAI")
                     .HasDefaultValueSql("0 ");
+            });
+
+            modelBuilder.Entity<TrangthaiP>(entity =>
+            {
+                entity.HasKey(e => e.MattP)
+                    .HasName("TRANGTHAI_P_PK");
+
+                entity.ToTable("TRANGTHAI_P");
+
+                entity.Property(e => e.MattP)
+                    .HasColumnType("NUMBER")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("MATT_P");
+
+                entity.Property(e => e.TenttP)
+                    .HasMaxLength(50)
+                    .HasColumnName("TENTT_P");
             });
 
             modelBuilder.HasSequence("AUTO_INCREMENT_SEQUENCE");

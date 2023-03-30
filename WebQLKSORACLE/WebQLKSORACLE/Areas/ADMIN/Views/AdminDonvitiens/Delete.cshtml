@@ -1,0 +1,49 @@
+﻿@model WebQLKSORACLE.Models.Donvitien
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách đơn vị tiền</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Xác nhận xóa</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+<table class="table table-hover no-margin">
+    <tbody>
+        <tr>
+            <td>ID</td>
+            <td>@Model.MaDvt</td>
+        </tr>
+        <tr>
+            <td>Tên quyền truy cập</td>
+            <td>@Model.TenDvt</td>
+        </tr>
+        
+        <tr>
+            <td>Xác nhận xóa</td>
+            <td>
+                <form asp-action="Delete" asp-route-id="@Model.MaDvt">
+                    <input type="hidden" asp-for="MaDvt" />
+                    <input type="submit" value="Xác nhận xóa" class="btn btn-default" />
+                </form>
+            </td>
+
+        </tr>
+    </tbody>
+</table>

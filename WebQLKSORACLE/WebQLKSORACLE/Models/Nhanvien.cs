@@ -14,7 +14,7 @@ namespace WebQLKSORACLE.Models
         public string MatkhauNv { get; set; }
         public string DiachiNv { get; set; }
         public bool GioitinhNv { get; set; }
-        public decimal RoleId { get; set; }
+        public decimal? RoleId { get; set; }
         public bool TrangthaiNv { get; set; }
         public string KeyNv { get; set; }
 

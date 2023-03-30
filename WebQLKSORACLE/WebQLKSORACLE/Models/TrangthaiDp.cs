@@ -14,7 +14,7 @@ namespace WebQLKSORACLE.Models
 
         public decimal MaTtdp { get; set; }
         public string TenTt { get; set; }
-        public bool? Trangthai { get; set; }
+        public bool Trangthai { get; set; }
         public string Chitiet { get; set; }
 
         public virtual ICollection<PhieuDatPhong> PhieuDatPhongs { get; set; }

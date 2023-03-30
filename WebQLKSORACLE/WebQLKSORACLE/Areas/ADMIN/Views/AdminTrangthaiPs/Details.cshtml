@@ -1,0 +1,25 @@
+﻿@model WebQLKSORACLE.Models.TrangthaiP
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TrangthaiP</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenttP)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenttP)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MattP">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<WebQLKSORACLE.Models.TrangthaiDp>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Trang chính</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Quản lý quyền truy cập</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+<div class="col-xs-12">
+    <div class="box-content">
+        <h4 class="box-title">Danh sách trạng thái đặt phòng</h4>
+        <div class="dropdown js__drop_down">
+            <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminTrangthaiDps" asp-action="Create">Add trạng thái</a>
+            <!-- /.sub-menu -->
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tên trạng thái</th>
+                    <th>Trạng thái</th>
+                    <th>Chi tiết</th>
+                    <th>#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                <tr>
+                    <th scope="row">@item.MaTtdp</th>
+                    <td>@item.TenTt</td>
+                    <td>
+                        @if (item.Trangthai == true)
+                        {
+                            <span class="notice notice-blue">Active</span>
+                        }
+                        else
+                        {
+                            <span class="notice notice-danger">Block</span>
+                        }
+                    </td>
+                    <td>@item.Chitiet</td>
+                    <td>
+
+                        <a class="btn btn-primary btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminTrangthaiDps" asp-action="Edit" asp-route-id="@item.MaTtdp">Edit</a>
+                        <a class="btn btn-success btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminTrangthaiDps" asp-action="Delete" asp-route-id="@item.MaTtdp">Delete</a>
+
+                    </td>
+                </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.box-content -->
+</div>

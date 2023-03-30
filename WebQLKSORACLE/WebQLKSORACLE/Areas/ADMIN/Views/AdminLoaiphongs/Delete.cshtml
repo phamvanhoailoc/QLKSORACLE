@@ -1,0 +1,59 @@
+﻿@model WebQLKSORACLE.Models.Loaiphong
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách loại phòng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Xóa loại phòng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenLp)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ChitietLp)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ChitietLp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Dongia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Dongia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SlNguoi)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SlNguoi)
+        </dd>
+      
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="MaLp" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a class="btn btn-default" asp-action="Index">Quay lại danh sách loại phòng</a>
+    </form>
+

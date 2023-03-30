@@ -1,0 +1,45 @@
+﻿@model WebQLKSORACLE.Models.TrangthaiP
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách trạng thái</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Chỉnh sửa trạng thái</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="MattP" />
+            <div class="form-group">
+                <label asp-for="TenttP" class="control-label">Tên trạng thái</label>
+                <input asp-for="TenttP" class="form-control" />
+                <span asp-validation-for="TenttP" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+

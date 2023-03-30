@@ -1,0 +1,96 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebQLKSORACLE.Models.Phong>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Trang chính</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Danh sách phòng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<form asp-action="Index" method="get">
+    <div class="form-group col-md-3">
+        <div class="input-group margin-bottom-3">
+            <input id="name" name="name" type="text" class="form-control" placeholder="Tên phòng">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<!-- breadcrumb area end -->
+<table class="table table-condensed">
+
+    <caption>Danh sách phòng : page @CurrentPage</caption>
+    <div class="dropdown js__drop_down" style="padding-top: 13px">
+        <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhongs" asp-action="Create">Add phòng</a>
+        <!-- /.sub-menu -->
+    </div>
+
+    <thead>
+        <tr>
+            <th>Tên phòng</th>
+            <th>Loại phòng</th>
+            <th>Đơn giá</th>
+            <th>Tình trạng phòng</th>
+            <th>Trạng thái</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.TenP</td>
+            <td>@item.MaLpNavigation.TenLp</td>
+            <td>@item.MaLpNavigation.Dongia</td>
+            <td>@item.MattPNavigation.TenttP</td>
+            <td>
+                @if (item.Trangthai == true)
+                {
+                    <span class="notice notice-blue">Active</span>
+                }
+                else
+                {
+                    <span class="notice notice-danger">Block</span>
+                }
+            </td>
+            <td width="230px">
+                <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhongs" asp-action="Details" asp-route-id="@item.MaP">View</a>
+                <a class="btn btn-primary btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhongs" asp-action="Edit" asp-route-id="@item.MaP">Edit</a>
+                <a class="btn btn-success btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhongs" asp-action="Delete" asp-route-id="@item.MaP">Delete</a>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Page @CurrentPage</div>
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+            <ul class="pagination">
+                <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminPhongs" asp-action="Index"></pager>
+            </ul>
+        </div>
+    </div>
+</div>

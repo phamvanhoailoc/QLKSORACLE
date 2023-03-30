@@ -1,0 +1,69 @@
+﻿@model WebQLKSORACLE.Models.Loaiphong
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách loại phòng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Thêm loại phòng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="TenLp" class="control-label">Tên loại phòng</label>
+                <input asp-for="TenLp" class="form-control" />
+                <span asp-validation-for="TenLp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ChitietLp" class="control-label">Chi tiết</label>
+                <input asp-for="ChitietLp" class="form-control" />
+                <span asp-validation-for="ChitietLp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaDvt" class="control-label">Đơn vị tiền</label>
+                <select asp-for="MaDvt" class="form-control" asp-items="ViewBag.MaDvt"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Dongia" class="control-label">Đơn giá</label>
+                <input asp-for="Dongia" class="form-control" type="number" />
+                <span asp-validation-for="Dongia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlNguoi" class="control-label">Số lượng người</label>
+                <input asp-for="SlNguoi" class="form-control" />
+                <span asp-validation-for="SlNguoi" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="switch primary">
+                    <input type="checkbox" asp-for="TrangthaiLp">
+                    <label for="TrangthaiLp">Public</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-default" asp-action="Index">Quay lại danh sách loại phòng</a>
+</div>
+

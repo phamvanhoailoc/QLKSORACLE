@@ -9,12 +9,12 @@ namespace WebQLKSORACLE.Models
     {
         public Donvitien()
         {
-            Giaphongs = new HashSet<Giaphong>();
+            Loaiphongs = new HashSet<Loaiphong>();
         }
 
         public decimal MaDvt { get; set; }
         public string TenDvt { get; set; }
 
-        public virtual ICollection<Giaphong> Giaphongs { get; set; }
+        public virtual ICollection<Loaiphong> Loaiphongs { get; set; }
     }
 }
