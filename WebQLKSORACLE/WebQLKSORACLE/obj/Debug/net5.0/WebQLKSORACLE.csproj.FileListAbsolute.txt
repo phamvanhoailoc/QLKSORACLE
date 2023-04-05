@@ -492,3 +492,14 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhongs\Details.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhongs\Edit.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhongs\Index.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhieuDatPhongs\Create.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhieuDatPhongs\Delete.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhieuDatPhongs\Details.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhieuDatPhongs\Edit.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminPhieuDatPhongs\Index.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Create.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Delete.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Details.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Edit.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Index.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\List.cshtml.g.cs

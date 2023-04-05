@@ -27,7 +27,7 @@ using WebQLKSORACLE.Models;
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"21ab2ef623df7d3b749230afb5985bb6c9149ae3", @"/Areas/ADMIN/Views/AdminKhachhangs/Delete.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7dc4b9db8154b33e3a0452e0284c13b5d769f876", @"/Areas/ADMIN/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"217a52bf64720f71f9011f2df66ae0f37a17bd0d", @"/Areas/ADMIN/Views/_ViewImports.cshtml")]
     public class Areas_ADMIN_Views_AdminKhachhangs_Delete : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<WebQLKSORACLE.Models.Khachhang>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-area", "Admin", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);

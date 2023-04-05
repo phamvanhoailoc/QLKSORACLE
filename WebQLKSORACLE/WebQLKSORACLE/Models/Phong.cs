@@ -7,6 +7,11 @@ namespace WebQLKSORACLE.Models
 {
     public partial class Phong
     {
+        public Phong()
+        {
+            CtPdps = new HashSet<CtPdp>();
+        }
+
         public decimal MaP { get; set; }
         public string TenP { get; set; }
         public decimal? MaLp { get; set; }
@@ -17,5 +22,6 @@ namespace WebQLKSORACLE.Models
 
         public virtual Loaiphong MaLpNavigation { get; set; }
         public virtual TrangthaiP MattPNavigation { get; set; }
+        public virtual ICollection<CtPdp> CtPdps { get; set; }
     }
 }

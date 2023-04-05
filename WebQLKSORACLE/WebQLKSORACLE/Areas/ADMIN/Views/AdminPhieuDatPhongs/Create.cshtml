@@ -1,0 +1,59 @@
+﻿@model WebQLKSORACLE.Models.PhieuDatPhong
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+<h4>PhieuDatPhong</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MaKh" class="control-label"></label>
+                <select asp-for="MaKh" class ="form-control" asp-items="ViewBag.MaKh"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaTtdp" class="control-label"></label>
+                <select asp-for="MaTtdp" class ="form-control" asp-items="ViewBag.MaTtdp"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgaydenDp" class="control-label"></label>
+                <input asp-for="NgaydenDp" class="form-control" />
+                <span asp-validation-for="NgaydenDp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgaydiDp" class="control-label"></label>
+                <input asp-for="NgaydiDp" class="form-control" />
+                <span asp-validation-for="NgaydiDp" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayLapP" class="control-label"></label>
+                <input asp-for="NgayLapP" class="form-control" />
+                <span asp-validation-for="NgayLapP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tongtien" class="control-label"></label>
+                <input asp-for="Tongtien" class="form-control" />
+                <span asp-validation-for="Tongtien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SlNgay" class="control-label"></label>
+                <input asp-for="SlNgay" class="form-control" />
+                <span asp-validation-for="SlNgay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

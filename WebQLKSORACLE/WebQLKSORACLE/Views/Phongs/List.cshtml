@@ -1,0 +1,85 @@
+﻿
+@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebQLKSORACLE.Models.Phong>
+
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    int PageNext = CurrentPage + 1;
+    Loaiphong loaiphong = ViewBag.CurrentLP;
+    ViewData["Title"] = "List" + CurrentPage;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- Breadcrumb Section Begin -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text">
+                    <h2>@loaiphong.TenLp</h2>
+                    <div class="bt-option">
+                        <a asp-controller="Home" asp-action="Index">Home</a>
+                        <span>Phòng</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb Section End -->
+<!-- Rooms Section Begin -->
+<section class="rooms-section spad">
+    <div class="container">
+        <div class="row">
+            @if (Model != null && Model.Count() > 0)
+            {
+                foreach (var item in Model)
+                {
+                    <div class="col-lg-4 col-md-6">
+                        <div class="room-item">
+                            <img src="~/images/TenP/@item.Hinh" alt="@item.TenP">
+                            <div class="ri-text">
+                                <h4>@item.TenP</h4>
+                                <h3>@item.MaLpNavigation.Dongia.Value.ToString("#,###")<span>/@item.MaLpNavigation.MaDvtNavigation.TenDvt</span></h3>
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <td class="r-o">Diện tích:</td>
+                                            <td>@item.MaLpNavigation.DienTich</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Số lượng người:</td>
+                                            <td>@item.MaLpNavigation.SlNguoi</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Loại giường:</td>
+                                            <td>@item.MaLpNavigation.LGiuong</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="r-o">Chi tiết:</td>
+                                            <td>@item.MaLpNavigation.ChitietLp</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <a asp-controller="Phongs" asp-action="Details" asp-route-id="@item.MaP" class="primary-btn">Xem chi tiết phòng</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Page @CurrentPage</div>
+            </div>
+            <div class="col-sm-7">
+                <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+                    <ul class="pagination">
+                        <pager class="pager-container" list="@Model" asp-route-Alias="@loaiphong.MaLp" asp-controller="Phongs" asp-action="List"></pager>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Rooms Section End -->

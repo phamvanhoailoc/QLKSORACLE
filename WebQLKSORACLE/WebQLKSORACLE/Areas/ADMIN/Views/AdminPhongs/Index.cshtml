@@ -47,6 +47,7 @@
             <th>Tên phòng</th>
             <th>Loại phòng</th>
             <th>Đơn giá</th>
+            <th>ĐVT</th>
             <th>Tình trạng phòng</th>
             <th>Trạng thái</th>
             <th>#</th>
@@ -60,7 +61,8 @@
         <tr>
             <td>@item.TenP</td>
             <td>@item.MaLpNavigation.TenLp</td>
-            <td>@item.MaLpNavigation.Dongia</td>
+            <td>@item.MaLpNavigation.Dongia.Value.ToString("#,###")</td>
+            <td>@item.MaLpNavigation.MaDvtNavigation.TenDvt</td>
             <td>@item.MattPNavigation.TenttP</td>
             <td>
                 @if (item.Trangthai == true)

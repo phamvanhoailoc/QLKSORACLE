@@ -23,39 +23,63 @@
     </div>
 </section>
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+    <div class="col-md-12">
+        <form asp-controller="AdminLoaiphongs" asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="MaLp" />
-            <div class="form-group">
-                <label asp-for="TenLp" class="control-label">Tên loại phòng</label>
-                <input asp-for="TenLp" class="form-control" />
-                <span asp-validation-for="TenLp" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="TenLp" class="control-label">Tên loại phòng</label>
+                    <input asp-for="TenLp" class="form-control" />
+                    <span asp-validation-for="TenLp" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="DienTich" class="control-label">Diện tích phòng</label>
+                    <input asp-for="DienTich" class="form-control" type="number" />
+                    <span asp-validation-for="DienTich" class="text-danger"></span>
+                </div>
+
             </div>
-            <div class="form-group">
-                <label asp-for="ChitietLp" class="control-label">Chi tiết</label>
-                <input asp-for="ChitietLp" class="form-control" />
-                <span asp-validation-for="ChitietLp" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="MaDvt" class="control-label">Đơn vị tiền</label>
+                    <select asp-for="MaDvt" class="form-control" asp-items="ViewBag.MaDvt"></select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="Dongia" class="control-label">Đơn giá</label>
+                    <input asp-for="Dongia" class="form-control" type="number" />
+                    <span asp-validation-for="Dongia" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Dongia" class="control-label">Đơn giá</label>
-                <input asp-for="Dongia" class="form-control" type="number"/>
-                <span asp-validation-for="Dongia" class="text-danger"></span>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="SlNguoi" class="control-label">Số lượng người</label>
+                    <input asp-for="SlNguoi" class="form-control" />
+                    <span asp-validation-for="SlNguoi" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label asp-for="LGiuong" class="control-label">Loại giường</label>
+                    <input asp-for="LGiuong" class="form-control" />
+                    <span asp-validation-for="LGiuong" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="MaDvt" class="control-label">ĐVT</label>
-                <select asp-for="MaDvt" class="form-control" asp-items="ViewBag.MaDvt"></select>
-                <span asp-validation-for="MaDvt" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SlNguoi" class="control-label">Số lượng người</label>
-                <input asp-for="SlNguoi" class="form-control" />
-                <span asp-validation-for="SlNguoi" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <div class="switch primary">
-                    <input type="checkbox" asp-for="TrangthaiLp">
-                    <label for="TrangthaiLp">Public</label>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label asp-for="ChitietLp" class="control-label">Chi tiết</label>
+                    <input asp-for="ChitietLp" class="form-control" />
+                    <span asp-validation-for="ChitietLp" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-1">
+                    <div class="switch primary">
+                        <input type="checkbox" asp-for="TrangthaiLp">
+                        <label for="TrangthaiLp">Public</label>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <label for="exampleInputFile">Ảnh</label>
+                    <input type="file" name="fThumb" asp-for="HinhLp">
+                    <span asp-validation-for="HinhLp" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group">
@@ -68,4 +92,5 @@
 <div>
     <a class="btn btn-default" asp-action="Index">Quay lại danh sách loại phòng</a>
 </div>
+
 

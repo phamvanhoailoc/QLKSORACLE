@@ -1,4 +1,4 @@
-using AspNetCoreHero.ToastNotification;
+﻿using AspNetCoreHero.ToastNotification;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -67,6 +68,21 @@ namespace WebQLKSORACLE
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+    }
+    public class NgayDiSauNgayDenAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            var ngayDen = (DateTime?)validationContext.ObjectType.GetProperty("NgaydenDp")?.GetValue(validationContext.ObjectInstance);
+            var ngayDi = (DateTime?)value;
+
+            if (ngayDen.HasValue && ngayDi.HasValue && ngayDi < ngayDen)
+            {
+                return new ValidationResult("Ngày đi phải sau ngày đến");
+            }
+
+            return ValidationResult.Success;
         }
     }
 }

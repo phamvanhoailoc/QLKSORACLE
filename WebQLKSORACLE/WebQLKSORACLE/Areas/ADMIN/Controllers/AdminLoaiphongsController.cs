@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
+using DiChoSaiGon.Helpper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -61,10 +63,18 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MaLp,TenLp,ChitietLp,TrangthaiLp,MaDvt,Dongia,SlNguoi")] Loaiphong loaiphong)
+        public async Task<IActionResult> Create([Bind("MaLp,TenLp,ChitietLp,TrangthaiLp,MaDvt,Dongia,SlNguoi,LGiuong, DienTich")] Loaiphong loaiphong, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
             if (ModelState.IsValid)
             {
+                loaiphong.TenLp = Utilities.ToTitleCase(loaiphong.TenLp);
+                if (fThumb != null)
+                {
+                    string extension = Path.GetExtension(fThumb.FileName);
+                    string imageLP = Utilities.SEOUrl(loaiphong.TenLp) + extension;
+                    loaiphong.HinhLp = await Utilities.UploadFile(fThumb, @"loaiphongs", imageLP.ToLower());
+                }
+                if (string.IsNullOrEmpty(loaiphong.HinhLp)) loaiphong.HinhLp = "default.jpg";
                 _context.Add(loaiphong);
                 await _context.SaveChangesAsync();
                 _notyfService.Success("Tạo thành công");
@@ -96,7 +106,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(decimal id, [Bind("MaLp,TenLp,ChitietLp,TrangthaiLp,MaDvt,Dongia,SlNguoi")] Loaiphong loaiphong)
+        public async Task<IActionResult> Edit(decimal id, [Bind("MaLp,TenLp,ChitietLp,TrangthaiLp,MaDvt,Dongia,SlNguoi,LGiuong, DienTich, HinhLp")] Loaiphong loaiphong, Microsoft.AspNetCore.Http.IFormFile fThumb)
         {
             if (id != loaiphong.MaLp)
             {
@@ -107,6 +117,15 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
             {
                 try
                 {
+
+                    loaiphong.TenLp = Utilities.ToTitleCase(loaiphong.TenLp);
+                    if (fThumb != null)
+                    {
+                        string extension = Path.GetExtension(fThumb.FileName);
+                        string imageLP = Utilities.SEOUrl(loaiphong.TenLp) + extension;
+                        loaiphong.HinhLp = await Utilities.UploadFile(fThumb, @"loaiphongs", imageLP.ToLower());
+                    }
+                    if (string.IsNullOrEmpty(loaiphong.HinhLp)) loaiphong.HinhLp = "default.jpg";
                     _context.Update(loaiphong);
                     await _context.SaveChangesAsync();
                     _notyfService.Success("Chỉnh sửa thành công");

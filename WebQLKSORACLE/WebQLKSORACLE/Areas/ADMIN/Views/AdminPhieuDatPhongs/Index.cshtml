@@ -1,0 +1,91 @@
+﻿@using PagedList.Core.Mvc
+@model PagedList.Core.IPagedList<WebQLKSORACLE.Models.PhieuDatPhong>
+@{
+    int CurrentPage = ViewBag.CurrentPage;
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
+}
+
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home">Trang chính</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Danh sách đặt phòng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<form asp-action="Index" method="get">
+    <div class="form-group col-md-3">
+        <div class="input-group margin-bottom-3">
+            <input id="name" name="name" type="text" class="form-control" placeholder="Tên khách hàng">
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<!-- breadcrumb area end -->
+<table class="table table-condensed">
+
+    <caption>Danh sách đặt phòng : page @CurrentPage</caption>
+    
+
+    <thead>
+        <tr>
+            <th>Tên khách hàng</th>
+            @*<th>Tên phòng</th>*@
+            <th>Ngày đến</th>
+            <th>Ngày đi</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th>#</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.MaKhNavigation.TenKh</td>
+            @*<td>@item</td>*@
+            <td>@item.NgaydenDp</td>
+            <td>@item.NgaydiDp</td>
+
+            @if (item.Tongtien != null)
+            {
+                <td>@item.Tongtien.Value.ToString("#,###")</td>
+
+            }
+            <td>@item.MaTtdpNavigation.TenTt</td>
+            <td width="230px">
+                <a class="btn btn-info btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhieuDatPhongs" asp-action="Details" asp-route-id="@item.MaDp">View</a>
+                <a class="btn btn-primary btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhieuDatPhongs" asp-action="Edit" asp-route-id="@item.MaDp">Edit</a>
+                <a class="btn btn-success btn-xs waves-effect waves-light" asp-area="Admin" asp-controller="AdminPhieuDatPhongs" asp-action="Delete" asp-route-id="@item.MaDp">Delete</a>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class="row">
+    <div class="col-sm-5">
+        <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Page @CurrentPage</div>
+    </div>
+    <div class="col-sm-7">
+        <div class="dataTables_paginate paging_simple_numbers" id="example_paginate">
+            <ul class="pagination">
+                <pager class="pager-container" list="@Model" asp-area="Admin" asp-controller="AdminPhieuDatPhongs" asp-action="Index"></pager>
+            </ul>
+        </div>
+    </div>
+</div>

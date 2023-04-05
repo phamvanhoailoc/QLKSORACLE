@@ -33,6 +33,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
             var Isphongs = _context.Phongs
                     .AsNoTracking()
                     .Include(t => t.MaLpNavigation)
+                    .Include(t => t.MaLpNavigation.MaDvtNavigation)
                     .Include(c => c.MattPNavigation);
             if (!string.IsNullOrEmpty(name))
             {
@@ -40,6 +41,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
                                 .Where(x => x.TenP.ToUpper().Contains(name.ToUpper()))
                                 .OrderByDescending(x => x.TenP)
                                 .Include(t => t.MaLpNavigation)
+                                .Include(t => t.MaLpNavigation.MaDvtNavigation)
                                 .Include(c => c.MattPNavigation);
             }
 

@@ -19,6 +19,9 @@ namespace WebQLKSORACLE.Models
         public decimal? MaDvt { get; set; }
         public decimal? Dongia { get; set; }
         public decimal? SlNguoi { get; set; }
+        public string HinhLp { get; set; }
+        public string LGiuong { get; set; }
+        public decimal? DienTich { get; set; }
 
         public virtual Donvitien MaDvtNavigation { get; set; }
         public virtual ICollection<Phong> Phongs { get; set; }

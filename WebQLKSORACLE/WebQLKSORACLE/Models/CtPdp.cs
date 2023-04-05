@@ -14,5 +14,6 @@ namespace WebQLKSORACLE.Models
         public decimal? SlNgay { get; set; }
 
         public virtual PhieuDatPhong MaDpNavigation { get; set; }
+        public virtual Phong MaPNavigation { get; set; }
     }
 }

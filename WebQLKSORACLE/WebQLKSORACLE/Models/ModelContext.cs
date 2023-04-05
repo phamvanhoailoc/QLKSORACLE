@@ -74,7 +74,14 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.MaDpNavigation)
                     .WithMany(p => p.CtPdps)
                     .HasForeignKey(d => d.MaDp)
-                    .HasConstraintName("FK_7");
+                    .HasConstraintName("FK_7")
+                    .OnDelete(DeleteBehavior.SetNull);
+
+                entity.HasOne(d => d.MaPNavigation)
+                    .WithMany(p => p.CtPdps)
+                    .HasForeignKey(d => d.MaP)
+                    .HasConstraintName("FK_10")
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Donvitien>(entity =>
@@ -172,13 +179,21 @@ namespace WebQLKSORACLE.Models
                     .ValueGeneratedOnAdd()
                     .HasColumnName("MA_LP");
 
-                entity.Property(e => e.ChitietLp)
-                    .HasMaxLength(200)
-                    .HasColumnName("CHITIET_LP");
+                entity.Property(e => e.ChitietLp).HasColumnName("CHITIET_LP");
+
+                entity.Property(e => e.DienTich)
+                    .HasColumnType("FLOAT")
+                    .HasColumnName("DIEN_TICH");
 
                 entity.Property(e => e.Dongia)
                     .HasColumnType("FLOAT")
                     .HasColumnName("DONGIA");
+
+                entity.Property(e => e.HinhLp).HasColumnName("HINH_LP");
+
+                entity.Property(e => e.LGiuong)
+                    .HasMaxLength(200)
+                    .HasColumnName("L_GIUONG");
 
                 entity.Property(e => e.MaDvt)
                     .HasColumnType("NUMBER")
@@ -200,7 +215,8 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.MaDvtNavigation)
                     .WithMany(p => p.Loaiphongs)
                     .HasForeignKey(d => d.MaDvt)
-                    .HasConstraintName("FK_4");
+                    .HasConstraintName("FK_4")
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Nhanvien>(entity =>
@@ -259,7 +275,8 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.Role)
                     .WithMany(p => p.Nhanviens)
                     .HasForeignKey(d => d.RoleId)
-                    .HasConstraintName("FK1");
+                    .HasConstraintName("FK1")
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<PhieuDatPhong>(entity =>
@@ -305,12 +322,14 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.MaKhNavigation)
                     .WithMany(p => p.PhieuDatPhongs)
                     .HasForeignKey(d => d.MaKh)
-                    .HasConstraintName("FK_5");
+                    .HasConstraintName("FK_5")
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.MaTtdpNavigation)
                     .WithMany(p => p.PhieuDatPhongs)
                     .HasForeignKey(d => d.MaTtdp)
-                    .HasConstraintName("FK_6");
+                    .HasConstraintName("FK_6")
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<Phong>(entity =>
@@ -351,12 +370,14 @@ namespace WebQLKSORACLE.Models
                 entity.HasOne(d => d.MaLpNavigation)
                     .WithMany(p => p.Phongs)
                     .HasForeignKey(d => d.MaLp)
-                    .HasConstraintName("FK_9");
+                    .HasConstraintName("FK_9")
+                    .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.MattPNavigation)
                     .WithMany(p => p.Phongs)
                     .HasForeignKey(d => d.MattP)
-                    .HasConstraintName("FK_3");
+                    .HasConstraintName("FK_3")
+                    .OnDelete(DeleteBehavior.SetNull);
             });
 
             modelBuilder.Entity<RoLe>(entity =>
