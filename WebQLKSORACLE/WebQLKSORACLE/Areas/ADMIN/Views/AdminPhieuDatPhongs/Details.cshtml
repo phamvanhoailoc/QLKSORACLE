@@ -1,61 +1,66 @@
-﻿@model WebQLKSORACLE.Models.PhieuDatPhong
-
+﻿@model WebQLKSORACLE.Models.CtPdp
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Areas/ADMIN/Views/Shared/_ADMINLayout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>PhieuDatPhong</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaydenDp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NgaydenDp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaydiDp)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NgaydiDp)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayLapP)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.NgayLapP)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Tongtien)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Tongtien)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.SlNgay)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.SlNgay)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKhNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaKhNavigation.MaKh)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaTtdpNavigation)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaTtdpNavigation.MaTtdp)
-        </dd>
-    </dl>
+<!-- breadcrumb area start -->
+<section class="breadcrumb__area box-plr-75">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xxl-12">
+                <div class="breadcrumb__wrapper">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Trang chủ</a></li>
+                            <li class="breadcrumb-item"><a asp-action="Index">Danh sách đặt phòng</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a></a>Thông tin đặt phòng</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb area end -->
+
+
+<table class="table table-hover no-margin">
+    <tbody>
+        <tr>
+            <td>Tên khách hàng: </td>
+            <td>@Model.MaDpNavigation.MaKhNavigation.TenKh</td>
+        </tr>
+        <tr>
+            <td>Email: </td>
+            <td>@Model.MaDpNavigation.MaKhNavigation.EmailKh</td>
+        </tr>
+        <tr>
+            <td>Tên phòng: </td>
+            <td>@Model.MaPNavigation.TenP</i></td>
+        </tr>
+        <tr>
+            <td>Ngày đến: </td>
+            <td>@Model.MaDpNavigation.NgaydenDp</td>
+        </tr>
+        <tr>
+            <td>Ngày đi: </td>
+            <td>@Model.MaDpNavigation.NgaydiDp</td>
+        </tr>
+        <tr>
+            <td>Số lượng ngày ở: </td>
+            <td>@Model.SlNgay</td>
+        </tr>
+        <tr>
+            <td>Tổng tiền: </td>
+            <td>@Model.Gia.Value.ToString("#,###")</td>
+        </tr>
+
+    </tbody>
+</table>
+
+<div class="form-group">
+    <a class="btn btn-default" asp-action="Index">Quay lại danh sách đặt phòng</a>
 </div>
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.MaDp">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+

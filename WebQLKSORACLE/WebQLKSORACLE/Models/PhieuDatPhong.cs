@@ -20,6 +20,7 @@ namespace WebQLKSORACLE.Models
         public DateTime? NgayLapP { get; set; }
         public decimal? Tongtien { get; set; }
         public decimal? SlNgay { get; set; }
+        public string Token { get; set; }
 
         public virtual Khachhang MaKhNavigation { get; set; }
         public virtual TrangthaiDp MaTtdpNavigation { get; set; }

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AspNetCoreHero.ToastNotification.Abstractions;
 using DiChoSaiGon.Extension;
 using DiChoSaiGon.Helpper;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -307,6 +310,60 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
             }
 
             return View(taikhoan);
+        }
+
+        [AllowAnonymous]
+        public IActionResult Login(string returnUrl = null)
+        {
+            //var taikhoanID = HttpContext.Session.GetString("Id");
+            //if (taikhoanID != null)
+            //{
+            //    return RedirectToAction("Index", "AdminNhanviens");
+            //}
+
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> Login(LoginAdminViewModel customer, string returnUrl = null)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    bool isEmail = Utilities.IsValidEmail(customer.UserName);
+                    if (!isEmail) return View(customer);
+                    var taikhoan = _context.Nhanviens.AsNoTracking().SingleOrDefault(x => x.EmailNv.Trim() == customer.UserName);
+                    if (taikhoan == null) return RedirectToAction("Create");
+                    string pass = (customer.Password + taikhoan.KeyNv.Trim()).ToMD5();
+                    if (taikhoan.MatkhauNv != pass)
+                    {
+                        _notyfService.Success("Thông tin đăng nhập chưa chính xác");
+                        return View(customer);
+                    }
+                    //kiem tra active
+                    if (taikhoan.TrangthaiNv == false) return RedirectToAction("ThongBao", "Accounts");
+                    //luu session
+                    HttpContext.Session.SetString("Id", taikhoan.MaNv.ToString());
+                    var taikhoanID = HttpContext.Session.GetString("Id");
+                    //identity
+                    var claims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, taikhoan.TenNv),
+                        new Claim("Id",taikhoan.MaNv.ToString())
+                    };
+                    ClaimsIdentity claimsIdentity = new ClaimsIdentity(claims, "login");
+                    ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                    await HttpContext.SignInAsync(claimsPrincipal);
+                    _notyfService.Success("Đăng nhập thành công");
+                    return RedirectToAction("Index", "AdminNhanviens");
+                }
+            }
+            catch
+            {
+                return RedirectToAction("Index", "AdminNhanviens");
+            }
+            return View(customer);
         }
 
     }

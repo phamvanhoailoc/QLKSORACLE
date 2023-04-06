@@ -3025,7 +3025,7 @@ table.focus-on > tbody > tr.focused.unfocused > td {
 }
 .statistics-box.with-icon {
   position: relative;
-  padding-left: 80px;
+
   text-align: right;
 }
 .statistics-box.with-icon .ico {

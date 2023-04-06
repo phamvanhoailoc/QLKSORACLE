@@ -27,6 +27,7 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
             var pageSize = 10;
             var Ispdphongs = _context.PhieuDatPhongs
                     .AsNoTracking()
+                    .Where(x => x.MaTtdp != 101)
                     .Include(t => t.MaTtdpNavigation)
                     .Include(c => c.MaKhNavigation);
 
@@ -60,12 +61,20 @@ namespace WebQLKSORACLE.Areas.ADMIN.Controllers
                 .Include(p => p.MaKhNavigation)
                 .Include(p => p.MaTtdpNavigation)
                 .FirstOrDefaultAsync(m => m.MaDp == id);
+            var ctpdp = _context.CtPdps
+                                .AsNoTracking()
+                                .Where(x => x.MaDp == phieuDatPhong.MaDp)
+                                .Include(p => p.MaPNavigation)
+                                .Include(p => p.MaDpNavigation.MaKhNavigation)
+                                .Include(p => p.MaDpNavigation);
+
+                                
             if (phieuDatPhong == null)
             {
                 return NotFound();
             }
 
-            return View(phieuDatPhong);
+            return View(ctpdp);
         }
 
         // GET: ADMIN/AdminPhieuDatPhongs/Create

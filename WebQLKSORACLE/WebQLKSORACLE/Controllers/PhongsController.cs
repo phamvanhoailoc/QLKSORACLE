@@ -1,9 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DiChoSaiGon.Extension;
+using MailKit.Net.Smtp;
+using MailKit.Security;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using MimeKit;
 using PagedList.Core;
 using System;
 using System.Linq;
+using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using WebQLKSORACLE.Models;
 using WebQLKSORACLE.ModelViews;
@@ -104,8 +110,10 @@ namespace WebQLKSORACLE.Controllers
                     NgaydiDp = datphong.NgaydiDp,
                     NgayLapP = DateTime.Now,
                     MaKh = kh.MaKh,
+                    Token = HashMD5.GenerateRandomString(10),
                     MaTtdp = 101
                 };
+               
                 _context.Add(pdp);
                 _context.SaveChanges();
                 CtPdp ctdp = new CtPdp
@@ -117,8 +125,41 @@ namespace WebQLKSORACLE.Controllers
                 };
                 _context.Add(ctdp);
                 _context.SaveChanges();
+                var confirmationLink = Url.Action("ConfirmEmail", "Phongs", new {id = pdp.MaDp, token = pdp.Token }, Request.Scheme);
+                var message = new MimeMessage();
+                message.From.Add(new MailboxAddress("Khách sạn", "phamvanhoailoc0507@gmail.com"));
+                message.To.Add(new MailboxAddress(kh.TenKh, kh.EmailKh));
+                message.Subject = "How you doin'?";
 
-            return RedirectToAction("index");
+                message.Body = new TextPart("html")
+                {
+                   
+                Text = $@"<h3>Xin chào {kh.TenKh}</h3>
+                        <p>Bạn nhận được thông tin này vì bạn đã đặt phòng trên khách sạn...</p>
+                        <p>Thông tin đặt phòng:</p>
+                        <div><p>Ngày nhận phòng: ${pdp.NgaydenDp}</p></div>
+                        <div><p>Ngày trả phòng: ${pdp.NgaydiDp}</p></div>
+
+                        <p>Nếu thông trên là đúng sự thật, vui lòng click vào đường link để hoàn tất quá trình đặt phòng</p>
+                        <div><a href='{confirmationLink}' target='blank'>Click here</a></div>
+
+                        <div> Xin chân thành cảm ơn </div> "
+
+
+                };
+
+                using (var client = new SmtpClient())
+                {
+                    client.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
+
+                    // Note: only needed if the SMTP server requires authentication
+                    client.Authenticate("phamvanhoailoc0507@gmail.com", "erjzbqeufrsheknq");
+
+                    client.Send(message);
+                    client.Disconnect(true);
+                }
+
+                    return RedirectToAction("Create");
             }
 
 
@@ -133,6 +174,25 @@ namespace WebQLKSORACLE.Controllers
             ViewBag.AllPhong = phong;
             return View(datphong);
         }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IActionResult> ConfirmEmail(decimal id, string token)
+        {
+            if (id == null || token == null )
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var result = await _context.PhieuDatPhongs.FirstOrDefaultAsync(p => p.MaDp == id && p.Token == token);
+            if (result != null) {
+                result.MaTtdp = 277;
+                _context.Update(result);
+                await _context.SaveChangesAsync();
+            }
+            
+            return View();
+        }
+
 
         // GET: Phongs/Create
         public IActionResult Create()

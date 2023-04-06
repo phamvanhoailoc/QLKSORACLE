@@ -169,7 +169,6 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Drawing.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Drawing.Primitives.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Dynamic.Runtime.dll
-E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Formats.Asn1.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Globalization.Calendars.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Globalization.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Globalization.Extensions.dll
@@ -225,7 +224,6 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Resources.Reader.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Resources.ResourceManager.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Resources.Writer.dll
-E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.Unsafe.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Runtime.CompilerServices.VisualC.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Runtime.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Runtime.Extensions.dll
@@ -256,7 +254,6 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Security.SecureString.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.ServiceModel.Web.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.ServiceProcess.dll
-E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Text.Encoding.CodePages.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Text.Encoding.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Text.Encoding.Extensions.dll
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\refs\System.Text.Encodings.Web.dll
@@ -503,3 +500,14 @@ E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Edit.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\Index.cshtml.g.cs
 E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\List.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\MailKit.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\MimeKit.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\BouncyCastle.Crypto.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\System.Formats.Asn1.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\System.Security.Cryptography.Pkcs.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\System.Text.Encoding.CodePages.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Security.Cryptography.Pkcs.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\System.Text.Encoding.CodePages.dll
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Views\Phongs\ConfirmEmail.cshtml.g.cs
+E:\Hoc Tap\oracle\QLKS\WebQLKSORACLE\WebQLKSORACLE\obj\Debug\net5.0\Razor\Areas\ADMIN\Views\AdminNhanviens\Login.cshtml.g.cs
